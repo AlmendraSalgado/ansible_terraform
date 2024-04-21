@@ -1,0 +1,35 @@
+---
+- name: Install terraform binary in the host
+  hosts: all
+  gather_facts: true
+  become: true
+
+  vars:
+    _url_: https://releases.hashicorp.com/terraform/1.8.1/terraform_1.8.1_linux_amd64.zip
+
+  tasks:
+    - name: Install terraform binary 
+      # Content suggestion provided by Ansible Lightspeed
+      ansible.builtin.get_url:
+        url: "{{ _url_ }}"
+        dest: /tmp/terraform.zip
+        mode: '0644'
+
+    - name: Extract terraform binary and copy into the PATH
+      # Content suggestion provided by Ansible Lightspeed
+      ansible.builtin.unarchive:
+        src: /tmp/terraform.zip
+        dest: /usr/local/bin/
+        remote_src: true
+
+    - name: Check version of the terraform binary just installed
+      # Content suggestion provided by Ansible Lightspeed
+      ansible.builtin.command: /usr/local/bin/terraform --version
+      changed_when: false
+      register: terraform_version
+
+    - name: Show terraform version registered from the previous task
+      # Content suggestion provided by Ansible Lightspeed
+      ansible.builtin.debug:
+        msg: "{{ terraform_version.stdout }}"
+

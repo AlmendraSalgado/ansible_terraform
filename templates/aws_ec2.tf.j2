@@ -1,0 +1,14 @@
+provider "aws" {
+  region     = "{{ aws_region }}"
+  access_key = "{{ aws_access_key }}"
+  secret_key = "{{ aws_secret_key }}"
+}
+
+resource "aws_instance" "{{ resource_name }}" {
+    ami = "{{ instance_ami_id }}"
+    instance_type = "{{ instance_type }}"
+    
+    tags = {
+        Name = "{{ instance_name }}"
+    }
+}

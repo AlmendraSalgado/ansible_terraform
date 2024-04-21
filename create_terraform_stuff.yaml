@@ -1,0 +1,30 @@
+---
+- hosts: all
+  gather_facts: false
+  become: false
+
+  vars:
+    _dest_: ./terraform
+    aws_region: us-west-1
+    instance_type: t2.micro
+    instance_ami_id: ami-0b990d3cfca306617
+    resource_name: ec2_instance
+    instance_name: amazon-linux-sandbox
+    
+  tasks:
+    - name: Create a tf file from template aws_ec2.tf.j2
+      # Content suggestion provided by Ansible Lightspeed
+      ansible.builtin.template:
+        src: aws_ec2.tf.j2
+        dest: "{{ _dest_ }}"
+
+    - name: Create terraform project from _dest_ project folder
+      cloud.terraform.terraform:
+        project_path: '{{ _dest_ }}'
+        state: planned
+
+
+
+
+
+
