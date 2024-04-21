@@ -21,7 +21,7 @@
     - name: Create terraform project from _dest_ project folder
       cloud.terraform.terraform:
         project_path: '{{ _dest_ }}'
-        state: planned
+        state: present
 
 
 
