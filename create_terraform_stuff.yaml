@@ -22,6 +22,7 @@
       cloud.terraform.terraform:
         project_path: '{{ _dest_ }}'
         state: present
+        binary_path: /usr/local/bin/terraform
 
 
 
