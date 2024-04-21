@@ -12,6 +12,13 @@
     instance_name: amazon-linux-sandbox
     
   tasks:
+    - name: Create _dest_ folder
+      # Content suggestion provided by Ansible Lightspeed
+      ansible.builtin.file:
+        path: "{{ _dest_ }}"
+        state: directory
+        mode: '0755'
+
     - name: Create a tf file from template aws_ec2.tf.j2
       # Content suggestion provided by Ansible Lightspeed
       ansible.builtin.template:
