@@ -16,7 +16,7 @@
       # Content suggestion provided by Ansible Lightspeed
       ansible.builtin.template:
         src: aws_ec2.tf.j2
-        dest: "{{ _dest_ }}"
+        dest: "{{ _dest_ }}/aws_ec2.tf"
 
     - name: Create terraform project from _dest_ project folder
       cloud.terraform.terraform:
