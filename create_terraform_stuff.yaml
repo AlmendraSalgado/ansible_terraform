@@ -12,7 +12,7 @@
     instance_name: amazon-linux-sandbox
     
   tasks:
-    - name: Create _dest_ folder
+    - name: Ensure _dest_ folder exists
       # Content suggestion provided by Ansible Lightspeed
       ansible.builtin.file:
         path: "{{ _dest_ }}"

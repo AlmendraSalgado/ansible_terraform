@@ -15,6 +15,13 @@
         dest: /tmp/terraform.zip
         mode: '0644'
 
+    - name: Install python libraries required to execute terraform
+      # Content suggestion provided by Ansible Lightspeed
+      ansible.builtin.pip:
+        name:
+          - dataclasses
+
+
     - name: Extract terraform binary and copy into the PATH
       # Content suggestion provided by Ansible Lightspeed
       ansible.builtin.unarchive:
